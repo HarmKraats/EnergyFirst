@@ -5,8 +5,9 @@ require_once '../templates/header.php';
 $db = getDB();
 
 // Register a new user and check if the email is already in use 
-if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['password_confirm'])) {
+if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['password_confirm']) && !empty($_POST['username'])) {
     $email = $_POST['email'];
+    $username = $_POST['username'];
     $password = $_POST['password'];
     $password_confirm = $_POST['password_confirm'];
 
@@ -23,9 +24,10 @@ if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['passwor
         if ($password == $password_confirm) {
             try {
                 $hassed = password_hash($password, PASSWORD_DEFAULT);
-                $sql = "INSERT INTO users (email, password) VALUES (:email, :password)";
+                $sql = "INSERT INTO users (email, password, username) VALUES (:email, :password, :username)";
                 $stmt = $db->prepare($sql);
                 $stmt->bindParam(':email', $email);
+                $stmt->bindParam(':username', $username);
                 $stmt->bindParam(':password', $hassed);
                 $stmt->execute();
 
@@ -39,7 +41,7 @@ if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['passwor
                 $_SESSION['user'] = $user;
                 // flash('register', 'Je account is aangemaakt', 'success');
 
-                header('Location: dashboard');
+                header('Location: euro');
             } catch (PDOException $e) {
                 echo 'Error met registreren: ' . $e->getMessage();
             }
@@ -61,6 +63,10 @@ if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['passwor
                 <div class="col-3"></div>
                 <div class="col-6">
                     <form method="post" action="register">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Username</label>
+                            <input name="username" type="text" class="form-control" id="username" aria-describedby="usernameHelp">
+                        </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Email adres:</label>
                             <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
