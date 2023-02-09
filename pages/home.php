@@ -1,5 +1,7 @@
 <?php
+require_once '../includes/autoload.php';
 $page = 'Home';
+
 require_once '../templates/header.php';
 ?>
 

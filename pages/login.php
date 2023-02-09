@@ -1,33 +1,30 @@
 <?php
+require_once '../includes/autoload.php';
+onAllowedPage('euro', true);
 $page = 'Login';
 
-require_once '../templates/header.php';
-
-if(isLoggedIn()){
-    header('Location: dashboard');
-}
 
 // Login to the website
 if (isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
-
+    
     // Check if the email is already in use
     $what = array('id', 'email', 'password', 'role');
     $users = getFromDB($what, 'users', 'email = "' . $email . '"');
-
-
-
+    
+    
+    
     // If the email is already in use, show an error message
     if (count($users) > 0) {
         $user = $users[0];
         $hassed = $user['password'];
-
+        
         if (password_verify($password, $hassed)) {
             $_SESSION['user'] = $user;
             $_SESSION['user']['role'] = $user['role'];
             // flash('login', 'Je bent ingelogd', 'success');
-            header('Location: dashboard');
+            header('Location: euro');
         } else {
             // flash('login', 'Wachtwoord is incorrect', 'danger');
         }
@@ -35,6 +32,9 @@ if (isset($_POST['login'])) {
         // flash('login', 'Account niet gevonden', 'danger');
     }
 }
+
+
+require_once '../templates/header.php';
 ?>
 
 <div class="content" id="main-content">

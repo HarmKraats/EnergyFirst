@@ -1,5 +1,4 @@
 <?php
-require_once '../includes/autoload.php';
 
 
 $page = isset($page) ? ucfirst($page) : ($_GET['page'] ?? 'Home');

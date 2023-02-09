@@ -1,10 +1,9 @@
-
 <?php
+require_once '../includes/autoload.php';
+onAllowedPage();
 $page = 'Euro';
+
 require_once '../templates/header.php';
-if(!isLoggedIn()){
-    header('Location: home');
-}
 ?>
 
 

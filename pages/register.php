@@ -1,17 +1,49 @@
 <?php
+require_once '../includes/autoload.php';
 $page = 'Register';
-
-require_once '../templates/header.php';
 $db = getDB();
 
+
 // Register a new user and check if the email is already in use 
-if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['password_confirm']) && !empty($_POST['username'])) {
-    $email = $_POST['email'];
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $password_confirm = $_POST['password_confirm'];
-
-
+if (isset($_POST['submit'])) {
+    $email = $_POST['email'] ?? '';
+    $username = $_POST['username'] ?? '';
+    $password = $_POST['password'] ?? '';
+    $password_confirm = $_POST['password_confirm'] ?? '';
+    
+    $errors = [];
+    
+    if (empty($email)) {
+        $errors[] = "Email is required.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Invalid email format.";
+    }
+    
+    if (empty($username)) {
+        $errors[] = "Username is required.";
+    }
+    
+    if (empty($password)) {
+        $errors[] = "Password is required.";
+    } elseif (strlen($password) < 8) {
+        $errors[] = "Password must be at least 8 characters.";
+    }
+    
+    if (empty($password_confirm)) {
+        $errors[] = "Password confirmation is required.";
+    } elseif ($password !== $password_confirm) {
+        $errors[] = "Passwords do not match.";
+    }
+    
+    if (count($errors) > 0) {
+        // flash('register', $errors, 'danger');
+        return;
+    }
+    
+    // put errors in session
+    $_SESSION['errors'] = $errors;
+    
+    
     // Check if the email is already in use
     $what = array('id', 'email');
     $users = getFromDB($what, 'users', 'email = "' . $email . '"');
@@ -30,17 +62,17 @@ if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['passwor
                 $stmt->bindParam(':username', $username);
                 $stmt->bindParam(':password', $hassed);
                 $stmt->execute();
-
+                
                 // Make a folder for the user in the uploads folder
                 $user_id = $db->lastInsertId();
-
+                
                 $what = array('id', 'email', 'password');
                 $users = getFromDB($what, 'users', 'email = "' . $email . '"');
                 $user = $users[0];
-
+                
                 $_SESSION['user'] = $user;
                 // flash('register', 'Je account is aangemaakt', 'success');
-
+                
                 header('Location: euro');
             } catch (PDOException $e) {
                 echo 'Error met registreren: ' . $e->getMessage();
@@ -52,13 +84,13 @@ if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['passwor
 }
 
 
-
+require_once '../templates/header.php';
 ?>
 
 <div class="content" id="main-content">
     <div class="container " id="content-wrap">
         <div class="container">
-
+            
             <div class="row mt-5">
                 <div class="col-3"></div>
                 <div class="col-6">
