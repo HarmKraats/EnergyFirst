@@ -1,7 +1,19 @@
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+@import 'theme/bootstrap';
+
+// font awesome
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+
+
 @import 'variables/variables';
 
 
 @import 'theme/theme';
 
+
 @import 'typography/typography';
 @import 'typography/fonts';
+
+@import 'components/nav';
+@import 'components/main';

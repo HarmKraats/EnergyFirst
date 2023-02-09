@@ -23,7 +23,10 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.3.0",
+    "bootstrap": "^5.2.3",
     "css-loader": "^6.7.3",
+    "fontawesome": "^5.6.3",
     "lodash": "^4.17.21",
     "style-loader": "^3.3.1"
   },

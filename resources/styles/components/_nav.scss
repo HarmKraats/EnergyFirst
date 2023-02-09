@@ -1,0 +1,43 @@
+nav{
+    background-color: var(--secondary-color);
+    padding-block: 1em;
+
+    .row{
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .menu{
+        display: flex;
+        justify-content: flex-end;
+
+        path{
+            transition: .3s;
+        }
+        
+        ul{
+            align-items: center;
+            display: flex;
+            margin: 0;
+            
+            li{
+                margin-left: 1em;
+            }
+        }
+        .active{
+            color: var(--primary-color);
+        }
+
+        a:hover{
+            color: var(--primary-color);
+            path{
+                fill: var(--primary-color);
+            }
+        }
+    }
+}
+header{
+    .row{
+        height: 10em;
+    }
+}

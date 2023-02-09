@@ -1,5 +1,5 @@
 <?php
-$page = 'Dashboard';
+$page = 'Stroom';
 require_once '../templates/header.php';
 if(!isLoggedIn()){
     header('Location: home');

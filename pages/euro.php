@@ -1,15 +1,19 @@
+
 <?php
-$page = 'Home';
+$page = 'Euro';
 require_once '../templates/header.php';
+if(!isLoggedIn()){
+    header('Location: home');
+}
 ?>
+
 
 <main>
     <div class="container">
+        <?php require_once '../templates/sidebar.php'; ?>
         <div class="row">
             <div class="col">
-                <h1>Home page</h1>
-                <a href="login">Login now!</a>
-                <a href="register">or register</a>
+                <p>Hier kun je filteren op jaar, maand en dag </p>
             </div>
         </div>
     </div>

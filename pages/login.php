@@ -3,11 +3,9 @@ $page = 'Login';
 
 require_once '../templates/header.php';
 
-
-
-
-
-
+if(is_logged_in()){
+    header('Location: dashboard');
+}
 
 // Login to the website
 if (isset($_POST['login'])) {

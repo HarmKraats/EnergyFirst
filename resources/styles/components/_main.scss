@@ -1,0 +1,28 @@
+main{
+    
+    .container{
+        background-color: var(--secondary-color);
+    }
+
+    .menu{
+        margin-top: -3em;
+        display: flex;
+
+        li{
+            border-radius: 5px 5px 0 0;
+            background-color: var(--secondary-color);
+            opacity: 60%;
+            margin-left: 1em;
+
+            a{
+            padding: 1em;
+            display: inline-block;
+
+            }
+
+            &.active{
+                opacity: 100%;
+            }
+        }
+    }
+}

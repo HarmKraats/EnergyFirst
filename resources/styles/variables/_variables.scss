@@ -1,7 +1,7 @@
 :root {
     --primary-color: #8abb47;
-    --secondary-color: #fff;
-    --secondary-color--dark: #fafafa;
+    --secondary-color: #FFF;
+    --secondary-color--dark: #FAFAFA;
     --color-black: #000000;
 
 
@@ -14,23 +14,23 @@
     --gap: 1em;
     --container-clamp: clamp(2em, 13vw, 5em);
 
-    --step--4: clamp(0.54rem, calc(0.53rem + 0.04vw), 0.56rem);
-    --step--3: clamp(0.65rem, calc(0.63rem + 0.11vw), 0.70rem);
-    --step--2: clamp(0.78rem, calc(0.74rem + 0.21vw), 0.88rem);
-    --step--1: clamp(0.94rem, calc(0.87rem + 0.34vw), 1.10rem);
-    --step-0: clamp(1.13rem, calc(1.02rem + 0.53vw), 1.38rem);
-    --step-1: clamp(1.35rem, calc(1.19rem + 0.78vw), 1.72rem);
-    --step-2: clamp(1.62rem, calc(1.40rem + 1.11vw), 2.15rem);
-    --step-3: clamp(1.94rem, calc(1.63rem + 1.56vw), 2.69rem);
-    --step-4: clamp(2.33rem, calc(1.90rem + 2.16vw), 3.36rem);
-    --step-5: clamp(2.80rem, calc(2.21rem + 2.94vw), 4.20rem);
-    --step-6: clamp(3.36rem, calc(2.57rem + 3.97vw), 5.25rem);
-    --step-7: clamp(4.03rem, calc(2.97rem + 5.32vw), 6.56rem);
+    --step--4: clamp(0.46rem, calc(0.49rem + -0.04vw), 0.48rem);
+    --step--3: clamp(0.58rem, calc(0.58rem + 0.00vw), 0.58rem);
+    --step--2: clamp(0.69rem, calc(0.69rem + 0.04vw), 0.72rem);
+    --step--1: clamp(0.83rem, calc(0.81rem + 0.12vw), 0.90rem);
+    --step-0: clamp(1.00rem, calc(0.96rem + 0.22vw), 1.13rem);
+    --step-1: clamp(1.20rem, calc(1.13rem + 0.36vw), 1.41rem);
+    --step-2: clamp(1.44rem, calc(1.33rem + 0.55vw), 1.76rem);
+    --step-3: clamp(1.73rem, calc(1.56rem + 0.82vw), 2.20rem);
+    --step-4: clamp(2.07rem, calc(1.84rem + 1.17vw), 2.75rem);
+    --step-5: clamp(2.49rem, calc(2.16rem + 1.64vw), 3.43rem);
+    --step-6: clamp(2.99rem, calc(2.53rem + 2.27vw), 4.29rem);
+    --step-7: clamp(3.58rem, calc(2.96rem + 3.10vw), 5.36rem);
 }
 
 .bg {
     &--dark {
-        --background-color: var(--secondary-color--dark);
+        --background-color: var(--primary-color);
         --text-color: var(--secondary-color);
         background-color: var(--background-color);
         color: var(--text-color);
