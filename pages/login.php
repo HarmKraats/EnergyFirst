@@ -3,7 +3,7 @@ $page = 'Login';
 
 require_once '../templates/header.php';
 
-if(is_logged_in()){
+if(isLoggedIn()){
     header('Location: dashboard');
 }
 
@@ -43,27 +43,6 @@ if (isset($_POST['login'])) {
 
 
         <div class="container">
-
-
-            <div class="row mb-5">
-                <div class="col-3"></div>
-                <div class="col-6">
-                    <?php // flash('login'); ?>
-                </div>
-                <div class="col-3"></div>
-
-            </div>
-            <div class="row mb-5">
-                <div class="col-3"></div>
-                <div class="col-6">
-                    <h1>
-                    <?= $page ?>
-                    </h1>
-                </div>
-                <div class="col-3"></div>
-
-            </div>
-
             <div class="row mt-5">
                 <div class="col-3"></div>
 
