@@ -18,80 +18,19 @@ require_once '../templates/header.php';
 
         <div class="row">
 
-
-
             <?php
             $what = array('opname_datum', 'gas');
-            $real_data = getFromDB($what, 'meterstand_gas');
+            $data = calculateValue(getFromDB($what, 'meterstand_gas'), 'gas');
 
-            $chart = new chart();
-            $chart->set_type('bar');
-            $chart->set_data($real_data);
-            $chart->set_labels('opname_datum');
-            $chart->set_values('gas');
-            $chart->set_title('Gasverbruik');
-
+            $chart = createChart('bar', $data, 'Gasverbruik' ,'opname_datum', 'gas');
             echo $chart->draw();
-
-
             ?>
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         </div>
     </div>
 </main>
+
+
+<?php
+require_once '../templates/footer.php';
+?>

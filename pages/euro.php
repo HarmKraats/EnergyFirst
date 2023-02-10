@@ -15,5 +15,14 @@ require_once '../templates/header.php';
                 <p>Hier kun je filteren op jaar, maand en dag </p>
             </div>
         </div>
+        <div class="row">
+
+            
+        </div>
     </div>
 </main>
+
+
+<?php
+require_once '../templates/footer.php';
+?>

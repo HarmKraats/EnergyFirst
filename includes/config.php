@@ -10,10 +10,14 @@ $config = array(
     'author_site' => 'https://harmvandekraats.nl',
     'site_copyright' => "Copyright &copy;".date('Y')." Harm van de Kraats",
 
-    'database_host' => 'friedmonkey.nl',
+    'database_host' => 'localhost',
     'database_name' => 'eneryfirst',
-    'database_user' => 'harm',
-    'database_password' => 'Harm2004!',
+    'database_user' => 'root',
+    'database_password' => '',
+    // 'database_host' => 'friedmonkey.nl',
+    // 'database_name' => 'eneryfirst',
+    // 'database_user' => 'harm',
+    // 'database_password' => 'Harm2004!',
 );
 
 

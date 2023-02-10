@@ -42,8 +42,9 @@ class chart
         ob_start();
 ?>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+        <!-- <script src="dist/main.js"></script> -->
         <script>
+            
             const ctx = document.getElementById('<?= $this->title ?>');
 
             new Chart(ctx, {
@@ -68,6 +69,7 @@ class chart
                     }]
                 },
                 options: {
+                    
                     scales: {
                         y: {
                             beginAtZero: true

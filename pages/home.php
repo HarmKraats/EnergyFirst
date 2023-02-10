@@ -15,3 +15,8 @@ require_once '../templates/header.php';
         </div>
     </div>
 </main>
+
+
+<?php
+require_once '../templates/footer.php';
+?>

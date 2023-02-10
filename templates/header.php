@@ -17,6 +17,8 @@ $current_page = 'dashboard' ? 'active' : '';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
+    <link rel="stylesheet" href="https://jeltecost.nl/assets/css/default.css">
     <link rel="stylesheet" href="dist/css/index.min.css">
 
     <!-- Title -->
