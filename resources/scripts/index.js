@@ -1,3 +1,6 @@
+import 'jquery';
+// import the test.js file
+import './ajax.js';
 // import _ from 'lodash';
 import '../styles/index.scss';
 import bootstrap from 'bootstrap';

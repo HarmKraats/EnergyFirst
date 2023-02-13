@@ -4,6 +4,22 @@ onAllowedPage();
 $page = 'Stroom';
 
 require_once '../templates/header.php';
+
+$what = array('opname_datum', 'stand_normaal', 'stand_dal');
+$database_data = getFromDB($what, 'meterstand_stroom');
+$data = calculateStroom($database_data);
+
+
+
+$chart = createChart(
+    'bar',
+    $data,
+    'Stroom verbruik',
+    'opname_datum',
+    'stroom_normaal'
+);
+
+
 ?>
 
 <main>
@@ -16,17 +32,13 @@ require_once '../templates/header.php';
         </div>
         <div class="row">
 
-            
-        <?php
-            $what = array('opname_datum', 'stand_normaal', 'stand_dal');
-            $data = calculateStroom(getFromDB($what, 'meterstand_stroom'), 'stroom_normaal', 'stroom_dal');
+            <?= $chart->draw(); ?>
 
+
+            <?php
             echo '<pre>';
             print_r($data);
             echo '</pre>';
-
-            // $chart = createChart('bar', $data, 'Stroom verbruik', 'opname_datum', 'stroom_normaal');
-            // echo $chart->draw();
             ?>
             
         </div>

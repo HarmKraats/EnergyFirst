@@ -33,7 +33,8 @@ class chart
         $this->title = $title;
     }
 
-    function draw(){
+    function draw()
+    {
         return $this->draw_wrapper() . $this->draw_chart();
     }
 
@@ -41,17 +42,14 @@ class chart
     {
         ob_start();
 ?>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <!-- <script src="dist/main.js"></script> -->
         <script>
-            
-            const ctx = document.getElementById('<?= $this->title ?>');
-
-            new Chart(ctx, {
+            chart = new Chart(ctx, {
                 type: '<?= $this->chart_type ?>',
                 data: {
                     labels: [
                         <?php
+                        // Label
                         foreach ($this->data as $index => $value) {
                             echo '"' . $value[$this->label] . '",';
                         }
@@ -61,6 +59,7 @@ class chart
                         label: '<?= $this->title ?>',
                         data: [
                             <?php
+                            // Value
                             foreach ($this->data as $index => $value) {
                                 echo $value[$this->value] . ',';
                             }
@@ -69,7 +68,7 @@ class chart
                     }]
                 },
                 options: {
-                    
+
                     scales: {
                         y: {
                             beginAtZero: true
@@ -88,14 +87,18 @@ class chart
     {
         ob_start();
     ?>
-        <div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <div id="chart">
             <canvas id="<?= $this->title ?>"></canvas>
         </div>
+
+        <script>
+            const ctx = document.getElementById('<?= $this->title ?>');
+        </script>
 
 <?php
         $wrapper = ob_get_clean();
         return $wrapper;
     }
-
-
 }

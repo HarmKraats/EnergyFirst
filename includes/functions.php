@@ -45,7 +45,6 @@ function currentPage()
     return $current_page;
 }
 
-
 function isActive($page)
 {
     if (currentPage() == strtolower($page)) {
@@ -68,7 +67,7 @@ function createChart($chart_type, $data, $title, $value, $label, $options = arra
     return $chart;
 }
 
-function calculateValue($data, $type)
+function calculateGas($data, $type)
 {
     $gasUsage = array();
     for ($i = 0; $i < count($data) - 1; $i++) {
@@ -84,16 +83,16 @@ function calculateValue($data, $type)
     return $gasUsage;
 }
 
+function calculateStroom(array $data): array {
+    for ($i = 1; $i < count($data); $i++) {
+        $opname_datum = $data[$i]['opname_datum'];
+        $usage = abs($data[$i]['stand_normaal'] + $data[$i]['stand_dal'] - $data[$i - 1]['stand_normaal'] - $data[$i - 1]['stand_dal']);
 
-function calculateStroom($data, $type_norm, $type_dal){
-    $stroom_usage = array();
-    for ($i = 0; $i < count($data) - 1; $i++) {
-        $type_norm = (int)$type_norm;
-        $type_dal = (int)$type_dal;
+        $stroomUsage[$i] = array(
+            'opname_datum' => $opname_datum,
+            'stroom_normaal' => $usage,
+        );
 
-        $type[$i] = $type_norm + $type_dal;
-        
-        
     }
-    return $type;
+    return $stroomUsage;
 }

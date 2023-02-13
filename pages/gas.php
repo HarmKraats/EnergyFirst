@@ -4,6 +4,11 @@ onAllowedPage();
 $page = 'Gas';
 
 require_once '../templates/header.php';
+
+
+$what = array('opname_datum', 'gas');
+$data = calculateGas(getFromDB($what, 'meterstand_gas'), 'gas');
+
 ?>
 
 <main>
@@ -11,20 +16,17 @@ require_once '../templates/header.php';
         <?php require_once '../templates/sidebar.php'; ?>
 
         <div class="row">
-            <div class="col">
-                <p>Hier kun je filteren op jaar, maand en dag </p>
-            </div>
+
+        <div class="btn" id="ajaxButton">click me! to make ajax request</div>
+
         </div>
 
         <div class="row">
 
             <?php
-            $what = array('opname_datum', 'gas');
-            $data = calculateValue(getFromDB($what, 'meterstand_gas'), 'gas');
-
-            $chart = createChart('bar', $data, 'Gasverbruik' ,'opname_datum', 'gas');
-            echo $chart->draw();
+            $chart = createChart('bar', $data, 'Gasverbruik', 'opname_datum', 'gas');
             ?>
+            <?= $chart->draw(); ?>
 
         </div>
     </div>

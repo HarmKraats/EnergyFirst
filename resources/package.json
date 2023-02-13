@@ -28,6 +28,7 @@
     "chart.js": "^4.2.0",
     "css-loader": "^6.7.3",
     "fontawesome": "^5.6.3",
+    "jquery": "^3.6.3",
     "lodash": "^4.17.21",
     "style-loader": "^3.3.1"
   },

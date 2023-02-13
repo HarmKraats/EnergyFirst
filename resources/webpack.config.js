@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); 
 const CopyPlugin = require("copy-webpack-plugin"); 
 
@@ -39,11 +40,14 @@ module.exports = (env) => {
     },
     plugins: [
       new MiniCssExtractPlugin({
-        // Options similar to the same options in webpackOptions.output
-        // both options are optional
         filename: "[name].css",
         chunkFilename: "[id].css",
       }),
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+      }),
+
       // new CopyPlugin({
       //   patterns: [
       //     {from : 'images', to: '../dist'}
