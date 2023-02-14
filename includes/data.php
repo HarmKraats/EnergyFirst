@@ -22,7 +22,7 @@ function getDB()
 }
 
 // Data uit de database halen met deze handige functie. 
-function getFromDB($what = "*", $table = "users", $where = "1")
+function getFromDB($what = "*", $table = "users", $where = "1", $debug = false)
 {
     try {
         $db = getDB();
@@ -34,7 +34,10 @@ function getFromDB($what = "*", $table = "users", $where = "1")
 
         // query
         $sql = "SELECT $what FROM $table WHERE $where";
-
+        if($debug){
+            echo $sql;
+        }
+        
         // prepare and execute query. Then fetch all the results and retype them as an array
         $stmt = $db->prepare($sql);
         $stmt->execute();

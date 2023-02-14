@@ -1,16 +1,23 @@
 <?php
 require_once 'includes/autoload.php';
-$what = array('opname_datum', 'gas');
-
-$database_data = getFromDB($what, 'meterstand_gas', '1 = 1 ORDER BY opname_datum DESC LIMIT 10');
-$data = calculateGas($database_data, 'gas');
-
-$chart = $GLOBALS['chart'];
-
-$chart->set_data($data);
-echo $chart->update_chart();
 
 
-// $chart = createChart('bar', $data, 'Gasverbruik', 'opname_datum', 'gas');
+$date = getTheDateNumber($_GET['date'] ?? date('m'));
+$filter = 'opname_datum LIKE "%-' . $date . '-%"';
+$what = array('opname_datum', 'stand_normaal', 'stand_dal');
+$database_data = getFromDB($what, 'meterstand_stroom', $filter . ' ORDER BY opname_datum');
 
-// echo $chart->draw_chart();
+
+
+if (count($database_data) > 0) {
+    $data = calculateStroom($database_data);
+    $chart = createChart(
+        'bar',
+        $data,
+        'Stroom verbruik in kWh',
+        'opname_datum',
+        'stroom_normaal'
+    );
+} else {
+    $error = 'Er zijn geen gegevens gevonden voor deze maand';
+}

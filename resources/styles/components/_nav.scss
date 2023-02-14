@@ -24,10 +24,7 @@ nav{
                 margin-left: 1em;
             }
         }
-        .active{
-            color: var(--primary-color);
-        }
-
+        
         a:hover{
             color: var(--primary-color);
             path{
@@ -35,4 +32,8 @@ nav{
             }
         }
     }
+}
+
+.active{
+    color: var(--primary-color);
 }

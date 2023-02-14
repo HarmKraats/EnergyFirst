@@ -4,8 +4,11 @@
 $page = isset($page) ? ucfirst($page) : ($_GET['page'] ?? 'Home');
 
 
-$current_page = 'dashboard' ? 'active' : '';
-
+if($page == "Dashboard" || $page == "Gas" || $page == "Euro" || $page == "Stroom"){
+    $current_page = 'active';
+}	else{
+    $current_page = '';
+}
 ?>
 
 <!DOCTYPE html>

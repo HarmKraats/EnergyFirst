@@ -76,14 +76,15 @@ function calculateGas($data, $type)
         $var = $day1[$type] - $day2[$type];
         $gasUsage[$i] = array(
             'opname_datum' => $day1['opname_datum'],
-            $type => $var
+            $type => abs($var)
         );
     }
 
     return $gasUsage;
 }
 
-function calculateStroom(array $data): array {
+function calculateStroom(array $data): array
+{
     for ($i = 1; $i < count($data); $i++) {
         $opname_datum = $data[$i]['opname_datum'];
         $usage = abs($data[$i]['stand_normaal'] + $data[$i]['stand_dal'] - $data[$i - 1]['stand_normaal'] - $data[$i - 1]['stand_dal']);
@@ -92,7 +93,113 @@ function calculateStroom(array $data): array {
             'opname_datum' => $opname_datum,
             'stroom_normaal' => $usage,
         );
-
     }
     return $stroomUsage;
+}
+
+function getTheDate($date)
+{
+
+    switch ($date) {
+        case '01':
+            $month = 'januari';
+            break;
+        case '02':
+            $month = 'februari';
+            break;
+        case '03':
+            $month = 'maart';
+            break;
+        case '04':
+            $month = 'april';
+            break;
+        case '05':
+            $month = 'mei';
+            break;
+        case '06':
+            $month = 'juni';
+            break;
+        case '07':
+            $month = 'juli';
+            break;
+        case '08':
+            $month = 'augustus';
+            break;
+        case '09':
+            $month = 'september';
+            break;
+        case '10':
+            $month = 'oktober';
+            break;
+        case '11':
+            $month = 'november';
+            break;
+        case '12':
+            $month = 'december';
+            break;
+    }
+
+    // if no month is found check if to show januari or december
+    if (!isset($month)) {
+        if ($date == '00') {
+            $month = 'december';
+        } else {
+            $month = 'januari';
+        }
+    }
+
+    return $month;
+}
+
+function getTheDateNumber($date)
+{
+
+    switch ($date) {
+        case 'januari':
+            $month = '01';
+            break;
+        case 'februari':
+            $month = '02';
+            break;
+        case 'maart':
+            $month = '03';
+            break;
+        case 'april':
+            $month = '04';
+            break;
+        case 'mei':
+            $month = '05';
+            break;
+        case 'juni':
+            $month = '06';
+            break;
+        case 'juli':
+            $month = '07';
+            break;
+        case 'augustus':
+            $month = '08';
+            break;
+        case 'september':
+            $month = '09';
+            break;
+        case 'oktober':
+            $month = '10';
+            break;
+        case 'november':
+            $month = '11';
+            break;
+        case 'december':
+            $month = '12';
+            break;
+    }
+    // if no month is found check if to show januari or december
+    if (!isset($month)) {
+        if ($date == 'december') {
+            $month = '12';
+        } else {
+            $month = date('m');
+        }
+    }
+
+    return $month;
 }
