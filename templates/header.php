@@ -23,6 +23,7 @@ if($page == "Dashboard" || $page == "Gas" || $page == "Euro" || $page == "Stroom
 
     <link rel="stylesheet" href="https://jeltecost.nl/assets/css/default.css">
     <link rel="stylesheet" href="dist/css/index.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Title -->
     <title><?= $page ?> | <?= $config['site_name'] ?></title>

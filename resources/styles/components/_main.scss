@@ -2,6 +2,7 @@ main{
     
     .container{
         background-color: var(--secondary-color);
+        box-shadow: 0 10px 40px rgb(0 0 0 / 7%)
     }
 
     .menu{
@@ -25,6 +26,14 @@ main{
             }
         }
 
+    }
+
+    .filter{
+        margin-block: 1em;
+
+        .col:not(.active){
+            opacity: 60%;
+        }
     }
     .error{
         background-color: var(--secondary-color--dark);

@@ -121,7 +121,7 @@ class chart
     {
         ob_start();
     ?>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        
 
         <div id="chart">
             <canvas id="<?= $this->title ?>"></canvas>
