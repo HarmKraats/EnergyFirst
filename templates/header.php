@@ -21,7 +21,7 @@ if($page == "Dashboard" || $page == "Gas" || $page == "Euro" || $page == "Stroom
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <link rel="stylesheet" href="https://jeltecost.nl/assets/css/default.css">
+    <!-- <link rel="stylesheet" href="https://jeltecost.nl/assets/css/default.css"> -->
     <link rel="stylesheet" href="dist/css/index.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
