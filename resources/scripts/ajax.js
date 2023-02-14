@@ -3,9 +3,10 @@ $('#ajaxButton').on('click', function() {
         url: 'ajax.php',
         type: 'GET',
         beforeSend: function() {
-            $('#chart_script').remove();
+
         },
         success: function(data) {
+            console.log(data);
             $('#chart_script').html(data);
         }
     });

@@ -83,6 +83,40 @@ class chart
         return $javascript;
     }
 
+
+
+    public function update_chart()
+    {
+        ob_start();
+    ?>
+        <script>
+            chart.data.labels = [
+                <?php
+                // Label
+                foreach ($this->data as $index => $value) {
+                    echo '"' . $value[$this->label] . '",';
+                }
+                ?>
+            ];
+            chart.data.datasets[0].data = [
+                <?php
+                // Value
+                foreach ($this->data as $index => $value) {
+                    echo $value[$this->value] . ',';
+                }
+                ?>
+            ];
+            chart.update();
+        </script>
+
+    <?php
+        $javascript = ob_get_clean();
+        return $javascript;
+    }
+    
+
+
+
     function draw_wrapper()
     {
         ob_start();

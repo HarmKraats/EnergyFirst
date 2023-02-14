@@ -10,6 +10,11 @@ $what = array('opname_datum', 'gas');
 $data = calculateGas(getFromDB($what, 'meterstand_gas'), 'gas');
 
 ?>
+<?php
+$chart = createChart('bar', $data, 'Gasverbruik', 'opname_datum', 'gas');
+// make the above variable a global variable
+
+?>
 
 <main>
     <div class="container">
@@ -23,10 +28,10 @@ $data = calculateGas(getFromDB($what, 'meterstand_gas'), 'gas');
 
         <div class="row">
 
-            <?php
-            $chart = createChart('bar', $data, 'Gasverbruik', 'opname_datum', 'gas');
-            ?>
-            <?= $chart->draw(); ?>
+                <?= $chart->draw_wrapper(); ?>
+                <div id="chart_script">
+                <?= $chart->draw_chart(); ?>
+            </div>
 
         </div>
     </div>
