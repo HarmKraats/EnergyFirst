@@ -13,6 +13,7 @@ $database_data = getFromDB($what, 'meterstand_stroom', $filter . ' ORDER BY opna
 
 if (count($database_data) > 0) {
     $data = calculateStroom($database_data);
+
     $chart = createChart(
         'bar',
         $data,
@@ -35,11 +36,7 @@ if (count($database_data) > 0) {
 <main>
     <div class="container">
         <?php require_once '../templates/sidebar.php'; ?>
-        <div class="row">
-            <div class="col">
-                <p>Hier kun je filteren op maand</p>
-            </div>
-        </div>
+
 
 
         <div class="row filter">
@@ -47,7 +44,7 @@ if (count($database_data) > 0) {
                 <?php $this_date = getTheDate($date + $i); ?>
                 <?php if ($this_date && getTheDateNumber($this_date) != '00' && getTheDateNumber($this_date) != '13') : ?>
                     <div class="col text-center<?= $i == 0 ? ' active' : '' ?>">
-                        <a href="?date=<?= $this_date ?>">
+                        <a href="?date=<?= $this_date ?>#scroll">
                             <?= ucfirst($this_date); ?>
                         </a>
                     </div>

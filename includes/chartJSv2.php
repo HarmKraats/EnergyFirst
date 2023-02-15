@@ -1,55 +1,40 @@
 <?php
 
-
-class chartV2
+class chartNew
 {
     public string $chart_type;
-    public string $seccond_chart_type;
-
     public array $data;
-    public array $seccond_data;
-
-    public string $label;
-    public string $value;
+    public array $labels;
+    public array $values;
     public string $title;
 
     public function set_type($type)
     {
         $this->chart_type = $type;
     }
-    public function seccond_set_type($type)
-    {
-        $this->seccond_chart_type = $type;
-    }
-
-
 
     public function set_data($data)
     {
         $this->data = $data;
     }
-    public function seccond_set_data($data)
+
+    public function set_labels($labels)
     {
-        $this->seccond_data = $data;
+        $this->labels = $labels;
     }
 
-
-
-    
-    public function set_values($value)
+    public function set_values($values)
     {
-        $this->value = $value;
+        $this->values = $values;
     }
+
     public function set_title($title)
     {
         $this->title = $title;
     }
-    public function set_labels($label)
+
+    function draw()
     {
-        $this->label = $label;
-    }
-    
-    function draw(){
         return $this->draw_wrapper() . $this->draw_chart();
     }
 
@@ -57,40 +42,23 @@ class chartV2
     {
         ob_start();
 ?>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
         <script>
-            const ctx = document.getElementById('<?= $this->title ?>');
-
-            new Chart(ctx, {
+            chart = new Chart(ctx, {
                 type: '<?= $this->chart_type ?>',
                 data: {
-                    datasets: [{
-                        type: '<?= $this->chart_type ?>',
-                        label: '<?= $this->title ?>',
-                        data: [
-                            <?php
-                            foreach ($this->data as $index => $value) {
-                                echo '"' . $value[$this->value] . '",';
-                            }
-                            ?>
-                        ],
-                    },
-                {
-                    type: '<?= $this->seccond_chart_type ?>',
-                    label: '<?= $this->title ?>',
-                    data: [
+                    labels: [
                         <?php
-                        foreach ($this->seccond_data as $index => $value) {
-                            echo '"' . $value[$this->value] . '",';
+                        // Label
+                        foreach ($this->data as $index => $dataset) {
+                            echo '"' . implode('","', $dataset[$this->labels]) . '",';
                         }
                         ?>
                     ],
-                }],
-                    labels: [
+                    datasets: [
                         <?php
-                        foreach ($this->seccond_data as $index => $value) {
-                            echo '"' . $value[$this->label] . '",';
+                        // Datasets
+                        foreach ($this->data as $index => $dataset) {
+                            echo "{ label: '{$dataset['title']}', data: [" . implode(',', $dataset[$this->values]) . "], },";
                         }
                         ?>
                     ],
@@ -104,6 +72,34 @@ class chartV2
                 }
             });
         </script>
+
+    <?php
+        $javascript = ob_get_clean();
+        return $javascript;
+    }
+
+    public function update_chart()
+    {
+        ob_start();
+    ?>
+        <script>
+            chart.data.labels = [
+                <?php
+                // Label
+                foreach ($this->data as $index => $dataset) {
+                    echo '"' . implode('","', $dataset[$this->labels]) . '",';
+                }
+                ?>
+            ];
+            <?php
+            // Datasets
+            foreach ($this->data as $index => $dataset) {
+                echo "chart.data.datasets[{$index}].data = [" . implode(',', $dataset[$this->values]) . "];";
+            }
+            ?>
+            chart.update();
+        </script>
+
     <?php
         $javascript = ob_get_clean();
         return $javascript;
@@ -113,14 +109,16 @@ class chartV2
     {
         ob_start();
     ?>
-        <div>
+        <div id="chart">
             <canvas id="<?= $this->title ?>"></canvas>
         </div>
+
+        <script>
+            const ctx = document.getElementById('<?= $this->title ?>');
+        </script>
 
 <?php
         $wrapper = ob_get_clean();
         return $wrapper;
     }
-
-
 }

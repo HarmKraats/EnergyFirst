@@ -139,6 +139,72 @@ function calculateStroom(array $data): array
 4. Calculates the usage
 5. Adds the date and usage to the new array */
 
+
+
+function calculateEuro(array $stroomData): array
+{
+    // Loop through the array
+    for ($i = 1; $i < count($stroomData); $i++) {
+        // Get the date
+        $opname_datum = $stroomData[$i]['opname_datum'];
+
+
+
+
+
+        $day1stand = $stroomData[$i]['stand_normaal'] - $stroomData[$i]['teruglevering_normaal'];
+
+        $day2stand = $stroomData[$i - 1]['stand_normaal'] - $stroomData[$i - 1]['teruglevering_normaal'];
+
+        $day1dal = $stroomData[$i]['stand_dal'] - $stroomData[$i]['teruglevering_dal'];
+
+        $day2dal = $stroomData[$i - 1]['stand_dal'] - $stroomData[$i - 1]['teruglevering_dal'];
+
+
+
+        $usage = (($day1stand + $day1dal) - ($day2stand + $day2dal)) * 0.59;
+
+        // Add the data to the new array
+        $Usage[$i] = array(
+            'opname_datum' => $opname_datum,
+            'stroom_normaal' => $usage,
+        );
+    }
+
+    // // Loop through the array
+    // for ($i = 1; $i < count($gasData); $i++) {
+    //     // Get the date
+    //     $opname_datum = $gasData[$i]['opname_datum'];
+    //     $day1 = $gasData[$i];
+    //     $day2 = $gasData[$i + 1];
+    //     $var = $day1['gas'] - $day2['gas'];
+
+    //     $usage = abs($var) * 0.59;
+
+    //     // if date in array already exists in the array like so: $Usage[$i]['opname_datum'] == $opname_datum
+
+    //     if(in_array($opname_datum, array_column($Usage, 'opname_datum'))) {
+    //         $key = array_search($opname_datum, array_column($Usage, 'opname_datum'));
+    //         $Usage[$key]['gas'] = $usage;
+    //     } else {
+    //         // Add the data to the new array
+    //         $Usage[$i] = array(
+    //             'opname_datum' => $opname_datum,
+    //             'gas' => $usage,
+    //         );
+    //     }
+    // }
+
+    return $Usage;
+}
+
+
+
+
+
+
+
+
 function getTheDate($date)
 {
 

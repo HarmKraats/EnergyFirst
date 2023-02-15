@@ -65,6 +65,7 @@ class chart
                             }
                             ?>
                         ],
+                        
                     }]
                 },
                 options: {

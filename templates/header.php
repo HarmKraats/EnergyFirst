@@ -73,7 +73,7 @@ if($page == "Dashboard" || $page == "Gas" || $page == "Euro" || $page == "Stroom
                     </div>
                 </div>
                 <div class="col">
-                    <div class="menu">
+                    <div id="scroll" class="menu">
                         <ul>
                             <li><a href="euro" class="<?= $current_page ?>">Verbruik</a></li>
                             <!-- dropdown with loggedin user -->

@@ -30,6 +30,8 @@ main{
 
     .filter{
         margin-block: 1em;
+        border-bottom: 2px solid #cccccc;
+        padding-bottom: 1em;
 
         .col:not(.active){
             opacity: 60%;

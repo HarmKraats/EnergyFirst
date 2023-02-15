@@ -35,19 +35,13 @@ if (count($database_data) > 0) {
 <main>
     <div class="container">
         <?php require_once '../templates/sidebar.php'; ?>
-        <div class="row">
-            <div class="col">
-                <p>Hier kun je filteren op maand</p>
-            </div>
-        </div>
-
 
         <div class="row filter">
             <?php for ($i = -1; $i <= 1; $i++) : ?>
                 <?php $this_date = getTheDate($date + $i); ?>
                 <?php if ($this_date && getTheDateNumber($this_date) != '00' && getTheDateNumber($this_date) != '13') : ?>
                     <div class="col text-center<?= $i == 0 ? ' active' : '' ?>">
-                        <a href="?date=<?= $this_date ?>">
+                        <a href="?date=<?= $this_date ?>#scroll">
                             <?= ucfirst($this_date); ?>
                         </a>
                     </div>
@@ -57,9 +51,6 @@ if (count($database_data) > 0) {
         <?php
         // Here we are selecting the months, so that we can filter the data per month.
         ?>
-
-
-
 
         <div class="row">
             <?php
