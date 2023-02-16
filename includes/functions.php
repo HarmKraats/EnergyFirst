@@ -148,10 +148,6 @@ function calculateEuro(array $stroomData): array
         // Get the date
         $opname_datum = $stroomData[$i]['opname_datum'];
 
-
-
-
-
         $day1stand = $stroomData[$i]['stand_normaal'] - $stroomData[$i]['teruglevering_normaal'];
 
         $day2stand = $stroomData[$i - 1]['stand_normaal'] - $stroomData[$i - 1]['teruglevering_normaal'];
