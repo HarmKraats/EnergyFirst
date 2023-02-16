@@ -102,8 +102,10 @@ function calculateGas($data, $type) {
         $day1 = $data[$i];
         $day2 = $data[$i + 1];
         $var = $day1[$type] - $day2[$type];
+        $opname_datum = date('d-m-Y', strtotime($day1['opname_datum']));
+
         $gasUsage[$i] = array(
-            'opname_datum' => $day1['opname_datum'],
+            'opname_datum' => $opname_datum,
             $type => abs($var)
         );
     }
@@ -121,8 +123,11 @@ function calculateStroom(array $data): array
     for ($i = 1; $i < count($data); $i++) {
         // Get the date
         $opname_datum = $data[$i]['opname_datum'];
+        // format new data
+        $opname_datum = date('d-m-Y', strtotime($opname_datum));
+
         // Calculate the usage
-        $usage = abs($data[$i]['stand_normaal'] + $data[$i]['stand_dal'] - $data[$i - 1]['stand_normaal'] - $data[$i - 1]['stand_dal']);
+        $usage = abs($data[$i]['stand_normaal'] + $data[$i]['stand_dal'] - ($data[$i - 1]['stand_normaal'] + $data[$i - 1]['stand_dal']));
 
         // Add the data to the new array
         $stroomUsage[$i] = array(
@@ -147,6 +152,8 @@ function calculateEuro(array $stroomData): array
     for ($i = 1; $i < count($stroomData); $i++) {
         // Get the date
         $opname_datum = $stroomData[$i]['opname_datum'];
+        $opname_datum = date('d-m-Y', strtotime($opname_datum));
+
 
         $day1stand = $stroomData[$i]['stand_normaal'] - $stroomData[$i]['teruglevering_normaal'];
 
