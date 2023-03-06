@@ -37,8 +37,7 @@ if (count($database_data) > 0) {
     <div class="container">
         <?php require_once '../templates/sidebar.php'; ?>
 
-
-
+        
         <div class="row filter">
             <?php for ($i = -1; $i <= 1; $i++) : ?>
                 <?php $this_date = getTheDate($date + $i); ?>
